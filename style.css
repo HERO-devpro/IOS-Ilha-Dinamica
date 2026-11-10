@@ -192,7 +192,7 @@ body {
     content: "";
     position: absolute;
     inset: 0;
-    border: var(--border-radius) solid rgba(255, 255, 255, 0.8);
+    border: 0.15em solid rgba(255, 255, 255, 0.8);
     border-radius: inherit;
     filter: blur(0.05em);
     -webkit-mask-image: radial-gradient(100% 100% at 50% 70%, black 30%, transparent 50%);
@@ -210,7 +210,7 @@ body {
 
 }
 
-.bg .section:nth-last-of-type {
+.bg .section:nth-last-of-type(1) {
     --g-h: calc(var(--c-h) - var(--g-hue-adjust, 0));
     --g-s: calc(var(--c-s) - 25%);
     --g-l: calc(var(--c-l) + 20%);
@@ -532,23 +532,23 @@ input[type="radio"] {
     background-image: radial-gradient(400% 300% at 50% 225%, transparent 20%, white);
 }
 
-.swatch[for=deep-puple] {
-    --swatch-s1: hsl(var(--deep-purple), 100% 50%);
+.swatch[for=deep-purple] {
+    --swatch-s1: hsl(var(--deep-purple), 100%, 50%);
     --swatch-s2: hsl(calc(var(--deep-purple) - 60), 100%, 20%);
 }
 
-.swatch[for=deep-puple]::before {
+.swatch[for=deep-purple]::before {
     opacity: 0.5;
 }
 
 .swatch[for=gold] {
-    --swatch-s1: hsl(var(--gold), 100% 50%);
-    --swatch-s2: hsl(var(--gold), 100% 50%);
+    --swatch-s1: hsl(var(--gold), 100%, 50%);
+    --swatch-s2: hsl(var(--gold), 100%, 50%);
 }
 
 .swatch[for=space-black] {
-    --swatch-s1: hsl(var(--space-black), 50% 20%);
-    --swatch-s2: hsl(var(--space-black), 50% 10%);
+    --swatch-s1: hsl(var(--space-black), 50%, 20%);
+    --swatch-s2: hsl(var(--space-black), 50%, 10%);
 }
 
 .swatch[for=space-black]::before {
@@ -556,8 +556,8 @@ input[type="radio"] {
 }
 
 .swatch[for=silver] {
-    --swatch-s1: hsl(var(--silver), 50% 80%);
-    --swatch-s2: hsl(var(--silver), 50% 10%);
+    --swatch-s1: hsl(var(--silver), 50%, 80%);
+    --swatch-s2: hsl(var(--silver), 50%, 10%);
 }
 
 .swatch[for=silver]::before {
@@ -594,17 +594,73 @@ input[type="radio"] {
 
 #deep-purple:checked~.phone .bg .deep-purple {
     opacity: 1;
+    z-index: 1;
+    transition-delay: 0s;
 }
 
+#deep-purple:checked~.phone .bg .deep-purple .section::before {
+    transition-delay: 0s;
+    animation: test 1s infinite alternate-reverse;
+}
 
+#deep-purple:checked~.pallette label[for=deep-purple] {
+    border-color: hsl(var(--deep-purple), 50%, 75%);
+}
 
+#gold:checked~.phone .bg .gold {
+    opacity: 1;
+    z-index: 1;
+    transition-delay: 0s;
+}
 
+#gold:checked~.phone .bg .gold .section::before {
+    transition-delay: 0s;
+    transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+    animation: test 1s infinite alternate-reverse;
+}
 
+#gold:checked~.pallette label[for=gold] {
+    border-color: hsl(var(--gold), 50%, 75%);
+}
 
+#space-black:checked~.phone .bg .space-black {
+    opacity: 1;
+    z-index: 1;
+    transition-delay: 0s;
+}
 
+#space-black:checked~.phone .bg .space-black .section::before {
+    transition-delay: 0s;
+    transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+    animation: test 1s infinite alternate-reverse;
+}
 
+#space-black:checked~.pallette label[for=space-black] {
+    border-color: hsl(var(--space-black), 50%, 75%);
+}
 
+#silver:checked~.phone .bg .silver {
+    opacity: 1;
+    z-index: 1;
+    transition-delay: 0s;
+}
 
+#silver:checked~.phone .bg .silver .section::before {
+    transition-delay: 0s;
+    transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+    animation: test 1s infinite alternate-reverse;
+}
 
+#silver:checked~.pallette label[for=silver] {
+    border-color: hsl(var(--silver), 50%, 75%);
+}
 
+@keyframes test {
+    from {
+        transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+    }
+    to {
+        transform: scale3d(2, 2, 2) translate3d(50px, 50px, 50px);
+    }
+}
 
